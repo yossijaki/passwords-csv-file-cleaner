@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BitWarden CSV Cleaner</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>🔐 Passwords CSV Cleaner</h1>
+        <p class="subtitle">Clean duplicated credentials from any browser/bitwarden-exported csv file securely</p>
+        
+        <div class="upload-area" id="uploadArea">
+            <div class="upload-icon">📁</div>
+            <p><strong>Drag your credentials CSV file here</strong></p>
+            <p>or</p>
+            <button class="btn">Select a file</button>
+            <input type="file" id="fileInput" accept=".csv">
+        </div>
+        
+        <div class="stats" id="stats">
+            <h3>📊 Process metrics</h3>
+            <div class="stat-item">
+                <span class="stat-label">Original credentials:</span>
+                <span class="stat-value" id="totalOriginal">0</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-label">Exact duplicates removed:</span>
+                <span class="stat-value removed-count" id="exactDuplicates">0</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-label">Duplicates per domain removed:</span>
+                <span class="stat-value removed-count" id="domainDuplicates">0</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-label">Clean credentials total:</span>
+                <span class="stat-value" id="totalClean">0</span>
+            </div>
+        </div>
+        
+        <div class="process-log" id="processLog">
+            <h4>📝 Process log</h4>
+            <div id="logContent"></div>
+        </div>
+        
+        <div class="warning" id="warning">
+            ⚠️ <strong>Important:</strong> Review the cleaned file before importing it back into BitWarden or any pasword manager. It's recommended to back up the original file.
+        </div>
+        
+        <div class="success" id="success">
+            ✅ <strong>¡Process completed!</strong> Your file has been cleaned and downloaded automatically.
+        </div>
+        
+        <div style="text-align: center; margin-top: 30px; display: none;" id="actions">
+            <button class="btn" id="downloadBtn">💾 Download cleaned file again</button>
+            <button class="btn" id="resetBtn">🔄 Clean another file</button>
+        </div>
+    </div>
+<script src="./main.js"></script>
+</body>
+</html>
